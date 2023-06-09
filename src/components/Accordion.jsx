@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import AccordionItem from './AccordionItem'
 
 const faqs = [
@@ -16,10 +17,18 @@ const faqs = [
 ]
 
 function Accordion() {
+  const [currentItem, setCurrentItem] = useState(null)
+
   return (
     <div className="mx-auto flex max-w-2xl flex-col gap-6 pt-20">
       {faqs.map((faq, index) => (
-        <AccordionItem key={index} index={index + 1} {...faq} />
+        <AccordionItem
+          key={index}
+          index={index}
+          currentItem={currentItem}
+          onOpen={setCurrentItem}
+          {...faq}
+        />
       ))}
     </div>
   )
